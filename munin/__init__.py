@@ -24,7 +24,7 @@ class MuninPlugin(object):
     def autoconf(self):
         return False
 
-    def config(self):
+    def get_config(self):
         conf = []
         for k in ('title', 'category', 'args', 'vlabel', 'info', 'scale', 'order'):
             v = getattr(self, k, None)
@@ -39,6 +39,10 @@ class MuninPlugin(object):
             for arg_name, arg_value in field_args.iteritems():
                 conf.append('%s.%s %s' % (field_name, arg_name, arg_value))
 
+        return conf
+
+    def config(self):
+        conf = self.get_config()
         print "\n".join(conf)
 
     def suggest(self):
