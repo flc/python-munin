@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+
+from munin.redis_db_base import MuninRedisDBPlugin
+
+
+class MuninRedisDB2Plugin(MuninRedisDBPlugin):
+    db_name = "db2"
+
+
+if __name__ == "__main__":
+    MuninRedisDB2Plugin().run()
