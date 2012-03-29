@@ -25,8 +25,10 @@ class MuninRedisDBPlugin(MuninRedisPlugin):
 
     def execute(self):
         stats = self.get_info()
-        r_values = stats[self.db_name]
-        values = [v.split("=")[1] for v in r_values.split(",")]
+        r_values = stats.get(self.db_name, None)
+        values = []
+        if r_values is not None:
+            values = [v.split("=")[1] for v in r_values.split(",")]
         ret_values = {}
         for index, (k, v) in enumerate(self.fields):
             try:
